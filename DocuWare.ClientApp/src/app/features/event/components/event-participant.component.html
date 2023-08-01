@@ -1,0 +1,21 @@
+<form [formGroup]="form">
+  <div>
+    <div class="field">
+      <label for="name" class="block text-900 font-medium mb-2">Name *</label>
+      <input id="name" formControlName="name" type="text" pInputText placeholder="Participant Name" class="w-full mb-3">
+    </div>
+    <div class="field">
+      <label for="phoneNumber" class="block text-900 font-medium mb-2">Phone Number *</label>
+      <input id="phoneNumber" formControlName="phoneNumber" type="text" pInputText placeholder="Participant Phone" class="w-full mb-3">
+    </div>
+    <div class="field">
+      <label for="emailAddress" class="block text-900 font-medium mb-2">Email *</label>
+      <input id="emailAddress" formControlName="emailAddress" type="text" pInputText placeholder="Participant Email" class="w-full mb-3">
+    </div>
+
+    <div class="text-center">
+      <p-button label="Cancel" icon="pi pi-times" class="m-3" (click)="cancel()"></p-button>
+      <p-button label="Save" icon="pi pi-check" class="m-3" [disabled]="!form.valid" (click)="save()"></p-button>
+    </div>
+  </div>
+</form>

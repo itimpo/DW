@@ -1,0 +1,61 @@
+<form [formGroup]="form" class="flex flex-wrap justify-content-center mt-6">
+  <div class="surface-card card p-4 shadow-2 border-round w-full lg:w-6">
+    <div class="text-center mb-5">
+      <div class="text-900 text-3xl font-medium mb-3">Event Edit</div>
+    </div>
+    <div>
+      <div class="field">
+        <label for="name" class="block text-900 font-medium mb-2">Name *</label>
+        <input id="name" formControlName="name" type="text" pInputText placeholder="Event Name" class="w-full mb-3">
+      </div>
+      <div class="field">
+        <label for="description" class="block text-900 font-medium mb-2">Description *</label>
+        <input id="description" formControlName="description" type="text" pInputText placeholder="Event Description" class="w-full mb-3">
+      </div>
+      <div class="field">
+        <label for="location" class="block text-900 font-medium mb-2">Location *</label>
+        <input id="location" formControlName="location" type="text" pInputText placeholder="Event Location" class="w-full mb-3">
+      </div>
+      <div class="field flex justify-content-between">
+        <div>
+          <label for="startTime" class="block text-900 font-medium mb-2">Start Time *</label>
+          <p-calendar formControlName="startTime" [showTime]="true" [showSeconds]="false" placeholder="Event Start Time" class="w-full mb-3"></p-calendar>
+        </div>
+        <div>
+          <label for="endTime" class="block text-900 font-medium mb-2">End Time</label>
+          <p-calendar formControlName="endTime" [showTime]="true" [showSeconds]="false" placeholder="Event End Time" class="w-full mb-3"></p-calendar>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="m-3" (click)="router.navigate(['/event/list'])"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="m-3" [disabled]="!form.valid" (click)="save()"></button>
+      </div>
+    </div>
+  </div>
+</form>
+
+<div class="text-center m-5">
+  <div class="text-900 text-3xl font-medium mb-3">Event Participants</div>
+</div>
+
+<p-table [value]="participants" styleClass="p-datatable-sm w-full" [rowHover]="true" sortField="name">
+  <ng-template pTemplate="header">
+    <tr>
+      <th class="text-right">Id</th>
+      <th>Name</th>
+      <th>Phone</th>
+      <th>Email</th>
+      <th class="w-1"></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-item let-i="rowIndex">
+    <tr>
+      <td class="text-right">{{item.id}}</td>
+      <td>{{item.name}}</td>
+      <td>{{item.phoneNumber}}</td>
+      <td>{{item.emailAddress}}</td>
+      <td></td>
+    </tr>
+  </ng-template>
+</p-table>

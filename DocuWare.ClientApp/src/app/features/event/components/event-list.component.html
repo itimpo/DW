@@ -1,0 +1,39 @@
+
+
+<div class="flex mt-2 mb-2 justify-content-between">
+  <span class="text-4xl">Events List</span>
+  <p-button *ngIf="userStore.isAuthenticated" label="Create" icon="pi pi-plus" styleClass="p-button-link" (click)="router.navigate(['/event/edit'])"></p-button>
+</div>
+
+<p-table [value]="events" styleClass="p-datatable-sm w-full"
+         [rowHover]="true" sortField="name">
+  <ng-template pTemplate="header">
+    <tr>
+      <th class="text-right">Id</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Location</th>
+      <th>Start</th>
+      <th>End</th>
+      <th class="w-1"></th>
+      <th class="w-3"></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-item let-i="rowIndex">
+    <tr>
+      <td class="text-right">{{item.id}}</td>
+      <td>{{item.name}}</td>
+      <td>{{item.description}}</td>
+      <td>{{item.location}}</td>
+      <td>{{item.startTime|date:'short'}}</td>
+      <td>{{item.endTime|date:'short'}}</td>
+      <td>
+        <span *ngIf="participateIds.includes(item.id)" class="pi pi-check-square"></span>
+      </td>
+      <td>
+        <p-button *ngIf="userStore.isAuthenticated" label="Edit" icon="pi pi-pencil" styleClass="p-button-link" (click)="router.navigate(['/event/edit/'+item.id])"></p-button>
+        <p-button label="Participate" icon="pi pi-user" styleClass="p-button-link" (click)="addParticipant(item.id)"></p-button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
